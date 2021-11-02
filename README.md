@@ -44,7 +44,7 @@ the previous output
 
 <!-- workflow.skip() -->
 ```shell
-  $context = Get-AzSubscription -SubscriptionId ...
+  $context = Get-AzSubscription -SubscriptionId <subscription id>
   Set-AzContext $context
 ```
 
