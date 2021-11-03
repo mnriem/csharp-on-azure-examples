@@ -51,3 +51,9 @@ the previous output
 <!-- workflow.run() 
 exit 0
   -->
+
+## Azure Resource Group examples
+
+| Name | Link | Status
+| ---- | ---- | ------ 
+| 1. [Create a Resource Group](group/create/README.md) | | 
