@@ -52,6 +52,12 @@ the previous output
 exit 0
   -->
 
+## Azure App Service examples
+
+| Name | Link | Status
+| ---- | ---- | ------ 
+| 1. [Create an App Service Plan](appservice/create-plan/README.md) | | 
+
 ## Azure Resource Group examples
 
 | Name | Link | Status
