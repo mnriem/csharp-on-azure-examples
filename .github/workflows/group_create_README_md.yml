@@ -1,0 +1,17 @@
+on: 
+  workflow_dispatch: 
+
+name: 'group/create/README.md'
+jobs: 
+  validate: 
+    runs-on: 'ubuntu-latest'
+    steps: 
+      - uses: 'azure/login@v1'
+        with: 
+          allow-no-subscriptions: 'true'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+      - uses: 'actions/checkout@v2'
+      - run: | 
+          $env:RESOURCE_GROUP='csharp-on-azure'
+          $env:REGION='westus2'
+          New-AzResourceGroup -Name $env:RESOURCE_GROUP -Location $env:REGION
