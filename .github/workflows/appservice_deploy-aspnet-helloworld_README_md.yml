@@ -1,0 +1,28 @@
+on: 
+  workflow_dispatch: 
+
+name: 'appservice/deploy-aspnet-helloworld/README.md'
+jobs: 
+  validate: 
+    runs-on: 'ubuntu-latest'
+    steps: 
+      - uses: 'azure/login@v1'
+        with: 
+          allow-no-subscriptions: 'true'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+      - uses: 'actions/checkout@v2'
+      - run: | 
+          dotnet new web --no-https --exclude-launch-settings
+          dotnet publish --configuration Release
+          cd bin\Release\net6.0\publish
+          Compress-Archive -Path * -DestinationPath deploy.zip
+          $env:APPSERVICE_ASPNET_HELLOWORLD='appservice-aspnet-helloworld-' + (Get-Random -Maximum 1000)
+          New-AzWebApp `
+          -ResourceGroupName $env:RESOURCE_GROUP `
+          -AppServicePlan $env:APPSERVICE_PLAN `
+          -Name $env:APPSERVICE_ASPNET_HELLOWORLD
+          Publish-AzWebApp `
+          -ResourceGroupName $env:RESOURCE_GROUP `
+          -Name $env:APPSERVICE_ASPNET_HELLOWORLD `
+          -ArchivePath (Get-Item .\deploy.zip).FullName `
+          -Force
