@@ -30,14 +30,14 @@ The next step is to create the release version of your application. Use the
 command line below to create that version:
 
 ```shell
-  dotnet publish --configuration Release
+  dotnet publish --runtime linux-x64 --self-contained --configuration Release
 ```
 
 Next create the zip file that will be used to deploy the application with the
 following command lines:
 
 ```shell
-  cd bin\Release\net6.0\publish
+  cd bin\Release\net6.0\linux-x64\publish
   Compress-Archive -Path * -DestinationPath deploy.zip
 ```
 
