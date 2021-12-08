@@ -13,7 +13,7 @@ jobs:
         token: ${{ secrets.GIT_PASSWORD }}
     - uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        java-version: 17
     - name: Run GitHub Workflow Generator
       run: |
         rm -rf .github/workflows/*_md.yml
