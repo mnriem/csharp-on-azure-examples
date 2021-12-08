@@ -13,8 +13,8 @@ jobs:
       - uses: 'actions/checkout@v2'
       - run: | 
           dotnet new web --no-https --exclude-launch-settings
-          dotnet publish --configuration Release
-          cd bin\Release\net6.0\publish
+          dotnet publish --runtime linux-x64 --self-contained --configuration Release
+          cd bin\Release\net6.0\linux-x64\publish
           Compress-Archive -Path * -DestinationPath deploy.zip
           $env:APPSERVICE_ASPNET_HELLOWORLD='appservice-aspnet-helloworld-' + (Get-Random -Maximum 1000)
           New-AzWebApp `
