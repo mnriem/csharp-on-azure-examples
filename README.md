@@ -58,6 +58,7 @@ exit 0
 | ---- | ---- | ------ 
 | 1. [Create an App Service Plan](appservice/create-plan/README.md) | | 
 | 2. [Deploy an ASP.NET HelloWorld application](appservice/deploy-aspnet-helloworld/README.md) | | 
+| 3. [Delete an App Serice Plan](appservice/delete-plan/README.md) | | 
 
 ## Azure Resource Group examples
 
