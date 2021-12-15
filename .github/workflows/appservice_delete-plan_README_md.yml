@@ -1,0 +1,25 @@
+on: 
+  schedule: 
+    - cron: '0 3 * * 1'
+  workflow_dispatch: 
+
+name: 'appservice/delete-plan/README.md'
+jobs: 
+  validate: 
+    runs-on: 'ubuntu-latest'
+    steps: 
+      - uses: 'azure/login@v1'
+        with: 
+          allow-no-subscriptions: 'true'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+      - uses: 'actions/checkout@v2'
+      - run: | 
+          $env:APPSERVICE_PLAN='appservice-plan'
+          New-AzAppServicePlan `
+          -Name $env:APPSERVICE_PLAN `
+          -ResourceGroupName $env:RESOURCE_GROUP `
+          -Location $env:REGION `
+          -Linux `
+          -Tier "PremiumV3"
+          Remove-AzAppServicePlan `
+          -Name $env:APPSERVICE_PLAN `
