@@ -52,7 +52,9 @@ the previous output
 exit 0
   -->
 
-## Azure App Service examples
+## Compute
+
+### Azure App Service examples
 
 | Name | Link | Status
 | ---- | ---- | ------ 
@@ -60,7 +62,9 @@ exit 0
 | 2. [Deploy an ASP.NET HelloWorld application](appservice/deploy-aspnet-helloworld/README.md) | | 
 | 3. [Delete an App Serice Plan](appservice/delete-plan/README.md) | | 
 
-## Azure Resource Group examples
+## General
+
+### Azure Resource Group examples
 
 | Name | Link | Status
 | ---- | ---- | ------ 
