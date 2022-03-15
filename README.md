@@ -64,12 +64,6 @@ exit 0
 
 ## General
 
-### PowerShell module
-
-| Name | Link | Status
-| ---- | ---- | ------
-| 1. [Install Az PowerShell module](general/install-az-powershell-module/README.md) | | 
-
 ### Azure Resource Group examples
 
 | Name | Link | Status
