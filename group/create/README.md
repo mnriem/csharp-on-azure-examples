@@ -3,28 +3,53 @@
 
 ## Prerequisites
 
-This example assume you are logged into Azure using PowerShell and have set your
-default subscription, if you have NOT done so please go to our top-level
-[README](../../)
+This example assume you are logged into Azure CLI and have set your default
+subscription, if you have NOT done so please go to our top-level
+[README](../../README.md)
 
 ## Create the Resource Group
 
 To setup the environment variables needed to create the Resource Group execute
 the command lines below:
 
+<!-- workflow.cron(0 0 * * 6) -->
+<!-- workflow.skip() -->
 ```shell
-  $env:RESOURCE_GROUP='csharp-on-azure'
-  $env:REGION='westus2'
+  export RESOURCE_GROUP=csharp-on-azure
+  export REGION=westus2
 ```
+
+<!-- workflow.run()
+
+  if [[ -z $RESOURCE_GROUP ]]; then
+    export RESOURCE_GROUP=csharp-on-azure-$RANDOM
+    export REGION=northcentralus
+  fi
+
+  -->
 
 To create the Resource Group use the following command line:
 
 ```shell
-  New-AzResourceGroup -Name $env:RESOURCE_GROUP -Location $env:REGION
+  az group create --name $RESOURCE_GROUP --location $REGION
 ```
+
+<!-- workflow.directOnly()
+
+  export RESULT=$(az group show --name $RESOURCE_GROUP --output tsv --query properties.provisioningState)
+  az group delete --name $RESOURCE_GROUP --yes || true
+  if [[ "$RESULT" != Succeeded ]]; then
+    exit 1
+  fi
+
+  -->
 
 ## Cleanup
 
 Do NOT forget to remove the resources once you are done running the example.
+
+## Reference documentation
+
+* [Manage resource groups and template deployments](https://docs.microsoft.com/cli/azure/group)
 
 1m
