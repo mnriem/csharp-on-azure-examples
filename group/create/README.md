@@ -15,14 +15,14 @@ the command lines below:
 <!-- workflow.cron(0 0 * * 6) -->
 <!-- workflow.skip() -->
 ```shell
-  export RESOURCE_GROUP=csharp-on-azure
+  export RESOURCE_GROUP=csoz
   export REGION=westus2
 ```
 
 <!-- workflow.run()
 
   if [[ -z $RESOURCE_GROUP ]]; then
-    export RESOURCE_GROUP=csharp-on-azure-$RANDOM
+    export RESOURCE_GROUP=csoz-$RANDOM
     export REGION=northcentralus
   fi
 
