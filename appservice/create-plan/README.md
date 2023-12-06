@@ -17,13 +17,13 @@ using the command line below:
 
 <!-- workflow.skip() -->
 ```shell
-  export APPSERVICE_PLAN=csoaz-asp
+  export APPSERVICE_PLAN=csoaz-asp-$RANDOM
 ```
 
 <!-- workflow.run() 
 if [[ -z $APPSERVICE_PLAN ]]; then
   export APPSERVICE_PLAN=csoaz-asp-$RANDOM
-  export REGION=northcentralus
+  export REGION=westus3
 fi
 -->
 
