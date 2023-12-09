@@ -1,4 +1,6 @@
 on: 
+  schedule: 
+    - cron: '0 0 * * 6'
   workflow_dispatch: 
 
 name: 'group/create/README.md'
@@ -12,6 +14,16 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
       - uses: 'actions/checkout@v2'
       - run: | 
-          $env:RESOURCE_GROUP='csharp-on-azure'
-          $env:REGION='westus2'
-          New-AzResourceGroup -Name $env:RESOURCE_GROUP -Location $env:REGION
+          
+          if [[ -z $RESOURCE_GROUP ]]; then
+          export RESOURCE_GROUP=csoz-$RANDOM
+          export REGION=northcentralus
+          fi
+          
+          az group create --name $RESOURCE_GROUP --location $REGION
+          
+          export RESULT=$(az group show --name $RESOURCE_GROUP --output tsv --query properties.provisioningState)
+          az group delete --name $RESOURCE_GROUP --yes || true
+          if [[ "$RESULT" != Succeeded ]]; then
+          exit 1
+          fi

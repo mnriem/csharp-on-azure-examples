@@ -1,4 +1,6 @@
 on: 
+  schedule: 
+    - cron: '0 1 * * 5'
   workflow_dispatch: 
 
 name: 'appservice/delete-plan/README.md'
@@ -12,12 +14,30 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
       - uses: 'actions/checkout@v2'
       - run: | 
-          $env:APPSERVICE_PLAN='appservice-plan'
-          New-AzAppServicePlan `
-          -Name $env:APPSERVICE_PLAN `
-          -ResourceGroupName $env:RESOURCE_GROUP `
-          -Location $env:REGION `
-          -Linux `
-          -Tier "PremiumV3"
-          Remove-AzAppServicePlan `
-          -Name $env:APPSERVICE_PLAN `
+          
+          if [[ -z $RESOURCE_GROUP ]]; then
+          export RESOURCE_GROUP=csoz-$RANDOM
+          export REGION=northcentralus
+          fi
+          
+          az group create --name $RESOURCE_GROUP --location $REGION
+          if [[ -z $APPSERVICE_PLAN ]]; then
+          export APPSERVICE_PLAN=csoaz-asp-$RANDOM
+          export REGION=westus3
+          fi
+          az appservice plan create \
+          --resource-group $RESOURCE_GROUP \
+          --location $REGION \
+          --name $APPSERVICE_PLAN \
+          --is-linux \
+          --sku P1v3
+          az appservice plan delete \
+          --resource-group $RESOURCE_GROUP \
+          --name $APPSERVICE_PLAN \
+          --yes
+          
+          export RESULT=$(az appservice plan show --resource-group $RESOURCE_GROUP --name $APPSERVICE_PLAN --query provisioningState --output tsv)
+          az group delete --name $RESOURCE_GROUP --yes || true
+          if [[ "$RESULT" == Succeeded ]]; then
+          exit 1
+          fi

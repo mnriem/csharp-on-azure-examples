@@ -14,15 +14,17 @@ jobs:
       - run: | 
           dotnet new web --no-https --exclude-launch-settings
           dotnet publish --runtime linux-x64 --self-contained --configuration Release
-          cd bin\Release\net6.0\linux-x64\publish
-          Compress-Archive -Path * -DestinationPath deploy.zip
-          $env:APPSERVICE_ASPNET_HELLOWORLD='appservice-aspnet-helloworld-' + (Get-Random -Maximum 1000)
-          New-AzWebApp `
-          -ResourceGroupName $env:RESOURCE_GROUP `
-          -AppServicePlan $env:APPSERVICE_PLAN `
-          -Name $env:APPSERVICE_ASPNET_HELLOWORLD
-          Publish-AzWebApp `
-          -ResourceGroupName $env:RESOURCE_GROUP `
-          -Name $env:APPSERVICE_ASPNET_HELLOWORLD `
-          -ArchivePath (Get-Item .\deploy.zip).FullName `
-          -Force
+          cd bin/Release/net8.0/linux-x64/publish
+          zip -r deploy.zip *
+          export APPSERVICE_HELLOWORLD=csoaz-asp-helloworld-$RANDOM
+          
+          az webapp create \
+          --resource-group $RESOURCE_GROUP \
+          --plan $APPSERVICE_PLAN \
+          --name $APPSERVICE_HELLOWORLD \
+          --runtime "DOTNETCORE:8.0"
+          az webapp deploy \
+          --resource-group $RESOURCE_GROUP \
+          --name $APPSERVICE_HELLOWORLD \
+          --src-path deploy.zip \
+          --type zip
