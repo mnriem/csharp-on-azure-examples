@@ -1,6 +1,8 @@
 
 # Create an App Service Plan
 
+[![appservice/create-plan/README.md](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/appservice_create-plan_README_md.yml/badge.svg)](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/appservice_create-plan_README_md.yml)
+
 ## Prerequisites
 
 This example assumes you have previously completed the following example:
@@ -9,7 +11,7 @@ This example assumes you have previously completed the following example:
 
 ## Create an App Service Plan
 
-<!-- workflow.cron(0 0 * * 5) -->
+<!-- workflow.cron(0 2 * * 1) -->
 <!-- workflow.include(../../group/create/README.md) -->
 
 First, create the environment variable used for our App Service Plan

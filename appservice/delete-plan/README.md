@@ -1,6 +1,8 @@
 
 # Delete an App Service Plan
 
+[![appservice/delete-plan/README.md](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/appservice_delete-plan_README_md.yml/badge.svg)](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/appservice_delete-plan_README_md.yml)
+
 ## Prerequisites
 
 This example assumes you have previously completed the following examples:
@@ -10,7 +12,7 @@ This example assumes you have previously completed the following examples:
 
 ## Delete an App Service Plan
 
-<!-- workflow.cron(0 1 * * 5) -->
+<!-- workflow.cron(0 3 * * 1) -->
 <!-- workflow.include(../create-plan/README.md) -->
 
 To delete the Azure App Service Plan use the following command line:
