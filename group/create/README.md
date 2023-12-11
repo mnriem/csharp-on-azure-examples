@@ -1,6 +1,8 @@
 
 # Create an Azure Resource Group
 
+[![group/create/README.md](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/group_create_README_md.yml/badge.svg)](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/group_create_README_md.yml)
+
 ## Prerequisites
 
 This example assume you are logged into Azure CLI and have set your default
@@ -12,7 +14,7 @@ subscription, if you have NOT done so please go to our top-level
 To setup the environment variables needed to create the Resource Group execute
 the command lines below:
 
-<!-- workflow.cron(0 0 * * 1) -->
+<!-- workflow.cron(0 1 * * 1) -->
 <!-- workflow.skip() -->
 ```shell
   export RESOURCE_GROUP=csoaz-rg
