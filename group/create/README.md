@@ -12,18 +12,18 @@ subscription, if you have NOT done so please go to our top-level
 To setup the environment variables needed to create the Resource Group execute
 the command lines below:
 
-<!-- workflow.cron(0 0 * * 6) -->
+<!-- workflow.cron(0 0 * * 1) -->
 <!-- workflow.skip() -->
 ```shell
-  export RESOURCE_GROUP=csoz
-  export REGION=westus2
+  export RESOURCE_GROUP=csoaz-rg
+  export REGION=pick_your_closest_region
 ```
 
 <!-- workflow.run()
 
   if [[ -z $RESOURCE_GROUP ]]; then
-    export RESOURCE_GROUP=csoz-$RANDOM
-    export REGION=northcentralus
+    export RESOURCE_GROUP=csoaz-rg-$RANDOM
+    echo "Using '"$RESOURCE_GROUP"' as resource group"
   fi
 
   -->
