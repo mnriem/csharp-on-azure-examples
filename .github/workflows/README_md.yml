@@ -4,7 +4,7 @@ on:
 name: 'README.md'
 jobs: 
   validate: 
-    runs-on: 'windows-latest'
+    runs-on: 'ubuntu-latest'
     steps: 
       - uses: 'azure/login@v1'
         with: 

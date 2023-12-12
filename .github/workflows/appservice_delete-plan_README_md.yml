@@ -1,12 +1,12 @@
 on: 
   schedule: 
-    - cron: '0 1 * * 5'
+    - cron: '0 3 * * 1'
   workflow_dispatch: 
 
 name: 'appservice/delete-plan/README.md'
 jobs: 
   validate: 
-    runs-on: 'windows-latest'
+    runs-on: 'ubuntu-latest'
     steps: 
       - uses: 'azure/login@v1'
         with: 
@@ -16,8 +16,8 @@ jobs:
       - run: | 
           
           if [[ -z $RESOURCE_GROUP ]]; then
-          export RESOURCE_GROUP=csoz-$RANDOM
-          export REGION=northcentralus
+          export RESOURCE_GROUP=csoaz-rg-$RANDOM
+          echo "Using '"$RESOURCE_GROUP"' as resource group"
           fi
           
           az group create --name $RESOURCE_GROUP --location $REGION

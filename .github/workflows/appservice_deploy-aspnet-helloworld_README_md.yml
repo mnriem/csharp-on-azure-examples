@@ -1,10 +1,12 @@
 on: 
+  schedule: 
+    - cron: '0 4 * * 1'
   workflow_dispatch: 
 
 name: 'appservice/deploy-aspnet-helloworld/README.md'
 jobs: 
   validate: 
-    runs-on: 'windows-latest'
+    runs-on: 'ubuntu-latest'
     steps: 
       - uses: 'azure/login@v1'
         with: 
@@ -12,6 +14,23 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
       - uses: 'actions/checkout@v2'
       - run: | 
+          
+          if [[ -z $RESOURCE_GROUP ]]; then
+          export RESOURCE_GROUP=csoaz-rg-$RANDOM
+          echo "Using '"$RESOURCE_GROUP"' as resource group"
+          fi
+          
+          az group create --name $RESOURCE_GROUP --location $REGION
+          if [[ -z $APPSERVICE_PLAN ]]; then
+          export APPSERVICE_PLAN=csoaz-asp-$RANDOM
+          export REGION=westus3
+          fi
+          az appservice plan create \
+          --resource-group $RESOURCE_GROUP \
+          --location $REGION \
+          --name $APPSERVICE_PLAN \
+          --is-linux \
+          --sku P1v3
           dotnet new web --no-https --exclude-launch-settings
           dotnet publish --runtime linux-x64 --self-contained --configuration Release
           cd bin/Release/net8.0/linux-x64/publish
@@ -28,3 +47,5 @@ jobs:
           --name $APPSERVICE_HELLOWORLD \
           --src-path deploy.zip \
           --type zip
+          
+          az group delete --name $RESOURCE_GROUP --yes || true
