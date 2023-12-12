@@ -1,7 +1,7 @@
 # C# on Azure Examples
 
 This GitHub repository contains a set of Azure examples specifically for C# 
-developers to quickly get started with Azure. Please use the issue tracker to
+developers on macOS / Linux to quickly get started with Azure. Please use the issue tracker to
 leave feedback, file issues or to propose other examples.
 
 ## Getting started
