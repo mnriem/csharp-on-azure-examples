@@ -15,6 +15,12 @@ This example assumes you have previously completed the following example:
 
 ## Deploy the ASP.NET Hello World application
 
+<!-- workflow.run() 
+
+  cd appservice/deploy-aspnet-helloworld
+
+ -->
+
 To create the Hello World application use the following command line:
 
 ```shell
@@ -70,6 +76,12 @@ Now execute the deploy by using the command line below:
     --src-path deploy.zip \
     --type zip
 ```
+
+<!-- workflow.run() 
+
+  cd ../..
+
+ -->
 
 ## Cleanup
 
