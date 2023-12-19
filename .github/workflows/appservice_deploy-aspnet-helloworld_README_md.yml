@@ -35,6 +35,9 @@ jobs:
           --name $APPSERVICE_PLAN \
           --is-linux \
           --sku P1v3
+          
+          cd appservice/deploy-aspnet-helloworld
+          
           dotnet new web --no-https --exclude-launch-settings
           dotnet publish --runtime linux-x64 --self-contained --configuration Release
           cd bin/Release/net8.0/linux-x64/publish
@@ -51,5 +54,8 @@ jobs:
           --name $APPSERVICE_HELLOWORLD \
           --src-path deploy.zip \
           --type zip
+          
+          cd ../..
+          
           
           az group delete --name $RESOURCE_GROUP --yes || true
