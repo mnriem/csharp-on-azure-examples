@@ -54,7 +54,7 @@ Set your default subscription for this session using the subscription id from th
 
 1. [Create an App Service Plan](appservice/create-plan/README.md) 
 1. [Deploy an ASP.NET HelloWorld application](appservice/deploy-aspnet-helloworld/README.md) 
-1. [Delete an App Serice Plan](appservice/delete-plan/README.md)  
+1. [Delete an App Service Plan](appservice/delete-plan/README.md)  
 
 ## General
 
