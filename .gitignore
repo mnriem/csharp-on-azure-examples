@@ -1,3 +1,4 @@
+.DS_Store
 appservice/deploy-aspnet-helloworld/bin/
 appservice/deploy-aspnet-helloworld/obj/
 appservice/deploy-aspnet-helloworld/deploy-aspnet-helloworld.csproj
@@ -5,3 +6,4 @@ appservice/deploy-aspnet-helloworld/Program.cs
 appservice/deploy-aspnet-helloworld/appsettings.json
 appservice/deploy-aspnet-helloworld/appsettings.Development.json
 parrot.jar
+
