@@ -1,0 +1,39 @@
+on: 
+  schedule: 
+    - cron: '0 5 * * 1'
+  workflow_dispatch: 
+
+name: 'acr/README.md'
+jobs: 
+  validate: 
+    runs-on: 'ubuntu-latest'
+    steps: 
+      - uses: 'azure/login@v1'
+        with: 
+          allow-no-subscriptions: 'true'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+      - uses: 'actions/checkout@v2'
+      - run: | 
+          
+          if [[ -z $REGION ]]; then
+          export REGION=westus
+          fi
+          
+          # WARN File could not be found: ../group/create/README.md
+          
+          if [[ -z $ACR_NAME ]]; then
+          export ACR_NAME=csoazacr$RANDOM
+          fi
+          
+          az acr create \
+          --name $ACR_NAME \
+          --resource-group $RESOURCE_GROUP \
+          --sku Basic \
+          --admin-enabled true
+          
+          export RESULT=$(az acr show --name $ACR_NAME --resource-group $RESOURCE_GROUP --output tsv --query provisioningState)
+          az group delete --name $RESOURCE_GROUP --yes || true
+          if [[ "$RESULT" != Succeeded ]]; then
+          echo "Azure Container Registry $ACR_NAME was not provisioned properly"
+          exit 1
+          fi
