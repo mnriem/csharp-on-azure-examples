@@ -1,65 +1,12 @@
+### Azure Container Registry examples
 
-# Create an Azure Container Registry
+| Name | Link | Status
+| ---- | ---- | ------ 
+| 1. [Create an Azure Container registry](create/README.md) | [Workflow](../.github/workflows/acr_create_README_md.yml) | [![acr/create/README.md](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/acr_create_README_md.yml/badge.svg)](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/acr_create_README_md.yml)
 
-[![acr/create/README.md](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/acr_create_README_md.yml/badge.svg)](https://github.com/mnriem/csharp-on-azure-examples/actions/workflows/acr_create_README_md.yml)
 
-## Prerequisites
+<!-- workflow.run() 
 
-<!-- workflow.directOnly()
-
-  if [[ -z $REGION ]]; then
-    export REGION=westus
-  fi
-
+  exit 0
+  
   -->
-<!-- workflow.cron(0 5 * * 1) -->
-<!-- workflow.include(../../group/create/README.md) -->
-
-This example assumes you have previously completed the following example:
-
-1. [Create an Azure Resource Group](../../group/create/README.md)
-
-## Create an Azure Container Registry
-
-Setup environment variable for the Azure Container Registry using the command
-line below:
-
-<!-- workflow.skip() -->
-```shell
-  export ACR_NAME=csoazacr$RANDOM
-```
-
-<!-- workflow.run()
-
-  if [[ -z $ACR_NAME ]]; then
-    export ACR_NAME=csoazacr$RANDOM
-  fi
-
-  -->
-
-To create the Azure Container Registry use the following command line:
-
-```shell
-  az acr create \
-    --name $ACR_NAME \
-    --resource-group $RESOURCE_GROUP \
-    --sku Basic \
-    --admin-enabled true
-```
-
-<!-- workflow.directOnly()
-
-  export RESULT=$(az acr show --name $ACR_NAME --resource-group $RESOURCE_GROUP --output tsv --query provisioningState)
-  az group delete --name $RESOURCE_GROUP --yes || true
-  if [[ "$RESULT" != Succeeded ]]; then
-    echo "Azure Container Registry $ACR_NAME was not provisioned properly"
-    exit 1
-  fi
-
-  -->
-
-## Cleanup
-
-Do NOT forget to remove the resources once you are done running the example.
-
-1m
