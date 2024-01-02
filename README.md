@@ -54,9 +54,9 @@ Set your default subscription for this session using the subscription id from th
 1. [Deploy an ASP.NET HelloWorld application](appservice/deploy-aspnet-helloworld/README.md) 
 1. [Delete an App Service Plan](appservice/delete-plan/README.md)  
 
-## Azure Container Registry examples
+## Examples
 
-1. [Create an Azure Container Registry](acr/create/README.md)
+1. [Azure Container Registry examples](acr/README.md)
 
 ## Azure Resource Group examples
 
