@@ -10,4 +10,5 @@ _Search for "Week X" to make sure you see all the content to be refreshed for th
 | Azure App Service examples | Create an App Service Plan | Week 2 |
 | | Delete an App Service plan | Week 3 |
 | | Deploy an ASP.NET Hello World application | Week 4 |
-| Azure Container Registry | Create an Azure Container Registry | Week 5 |
+| Azure Container Registry examples | Create an Azure Container Registry | Week 5 |
+| Azure Key Vault examples | Create an Azure Key Vault | Week 6 |
