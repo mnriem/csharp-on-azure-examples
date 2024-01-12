@@ -12,3 +12,4 @@ _Search for "Week X" to make sure you see all the content to be refreshed for th
 | | Deploy an ASP.NET Hello World application | Week 4 |
 | Azure Container Registry examples | Create an Azure Container Registry | Week 5 |
 | Azure Key Vault examples | Create an Azure Key Vault | Week 6 |
+| | Adding a Secret to Key Vault | Week 7 |
