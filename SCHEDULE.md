@@ -13,3 +13,4 @@ _Search for "Week X" to make sure you see all the content to be refreshed for th
 | Azure Container Registry examples | Create an Azure Container Registry | Week 5 |
 | Azure Key Vault examples | Create an Azure Key Vault | Week 6 |
 | | Adding a Secret to Key Vault | Week 7 |
+| Azure Container Registry exampels | Build and push ASP.NET Hello World application | Week 8 |
