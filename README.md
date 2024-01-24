@@ -48,14 +48,9 @@ Set your default subscription for this session using the subscription id from th
 
   -->
 
-## Azure App Service examples
-
-1. [Create an App Service Plan](appservice/create-plan/README.md) 
-1. [Deploy an ASP.NET HelloWorld application](appservice/deploy-aspnet-helloworld/README.md) 
-1. [Delete an App Service Plan](appservice/delete-plan/README.md)  
-
 ## Examples
 
+1. [Azure App Service examples](appservice/README.md)
 1. [Azure Container Registry examples](acr/README.md)
 
 ## Azure Resource Group examples
