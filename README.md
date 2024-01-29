@@ -52,7 +52,5 @@ Set your default subscription for this session using the subscription id from th
 
 1. [Azure App Service examples](appservice/README.md)
 1. [Azure Container Registry examples](acr/README.md)
+1. [Azure Resource Group examples](group/README.md)
 
-## Azure Resource Group examples
-
-1. [Create a Resource Group](group/create/README.md) 
