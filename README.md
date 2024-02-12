@@ -51,7 +51,7 @@ Set your default subscription for this session using the subscription id from th
 ## Examples
 
 1. [Azure App Service examples](appservice/README.md)
+1. [Azure Container Apps examples](containerapp/README.md)
 1. [Azure Container Registry examples](acr/README.md)
 1. [Azure Key Vault examples](keyvault/README.md)
 1. [Azure Resource Group examples](group/README.md)
-
