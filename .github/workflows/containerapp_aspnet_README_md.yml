@@ -1,0 +1,72 @@
+on: 
+  schedule: 
+    - cron: '0 11 * * 1'
+  workflow_dispatch: 
+
+name: 'containerapp/aspnet/README.md'
+jobs: 
+  validate: 
+    runs-on: 'ubuntu-latest'
+    steps: 
+      - uses: 'azure/login@v1'
+        with: 
+          allow-no-subscriptions: 'true'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+      - uses: 'actions/checkout@v2'
+      - run: | 
+          if [[ -z $REGION ]]; then
+          export REGION=westus
+          fi
+          
+          
+          if [[ -z $RESOURCE_GROUP ]]; then
+          export RESOURCE_GROUP=csoaz-rg-$RANDOM
+          echo "Using '"$RESOURCE_GROUP"' as resource group"
+          fi
+          
+          az group create --name $RESOURCE_GROUP --location $REGION
+          az extension add --name containerapp --upgrade
+          az provider register --namespace Microsoft.App
+          az provider register --namespace Microsoft.OperationalInsights
+          
+          if [[ -z $ACA_ENVIRONMENT_NAME ]]; then
+          export ACA_ENVIRONMENT_NAME=joazaca$RANDOM
+          export ACA_REGION=westus
+          fi
+          
+          az containerapp env create \
+          --name $ACA_ENVIRONMENT_NAME \
+          --resource-group $RESOURCE_GROUP \
+          --location "$ACA_REGION"
+          
+          cd containerapp/aspnet
+          
+          export ACA_ASPNET=aspnet
+          
+          az containerapp create \
+          --name $ACA_ASPNET \
+          --resource-group $RESOURCE_GROUP \
+          --environment $ACA_ENVIRONMENT_NAME \
+          --image $ACR_NAME.azurecr.io/$ACR_HELLOWORLD_IMAGE \
+          --target-port 8080 \
+          --ingress 'external' \
+          --registry-server $ACR_NAME.azurecr.io \
+          --min-replicas 1
+          
+          az containerapp show \
+          --resource-group $RESOURCE_GROUP \
+          --name $ACA_ASPNET \
+          --query properties.configuration.ingress.fqdn \
+          --output tsv
+          
+          cd ../..
+          
+          
+          sleep 120
+          export URL=https://$(az containerapp show --resource-group $RESOURCE_GROUP --name $ACA_ASPNET --query properties.configuration.ingress.fqdn --output tsv)
+          export RESULT=$(curl $URL)
+          az group delete --name $RESOURCE_GROUP --yes || true
+          if [[ "$RESULT" != *"custom Glassfish"* ]]; then
+          echo "Response did not contain 'custom Glassfish'"
+          exit 1
+          fi
