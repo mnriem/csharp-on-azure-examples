@@ -37,7 +37,7 @@ Then, create the App Service Plan using the following command line:
     --location $REGION \
     --name $APPSERVICE_PLAN \
     --is-linux \
-    --sku P1v3
+    --sku P2v3
 ```
 
 <!-- workflow.directOnly() 
