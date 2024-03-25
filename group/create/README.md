@@ -15,6 +15,7 @@ To setup the environment variables needed to create the Resource Group execute
 the command lines below:
 
 <!-- workflow.run()
+
   if [[ -z $REGION ]]; then
     export REGION=westus
   fi
