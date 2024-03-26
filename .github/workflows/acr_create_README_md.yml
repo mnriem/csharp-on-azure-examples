@@ -19,6 +19,7 @@ jobs:
           export REGION=westus
           fi
           
+          
           if [[ -z $REGION ]]; then
           export REGION=westus
           fi

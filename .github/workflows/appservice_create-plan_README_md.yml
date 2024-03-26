@@ -14,6 +14,7 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
       - uses: 'actions/checkout@v2'
       - run: | 
+          
           if [[ -z $REGION ]]; then
           export REGION=westus
           fi
@@ -34,7 +35,7 @@ jobs:
           --location $REGION \
           --name $APPSERVICE_PLAN \
           --is-linux \
-          --sku P1v3
+          --sku P2v3
           
           export RESULT=$(az appservice plan show --resource-group $RESOURCE_GROUP --name $APPSERVICE_PLAN --query properties.provisioningState --output tsv)
           az group delete --name $RESOURCE_GROUP --yes || true
